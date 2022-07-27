@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+}
+#main {
+    width: 100%;
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    flex-direction: column;
+}
+#container {
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+#appleContainer {
+    position: absolute;
+    visibility: hidden;
+}
+#apple {
+    width: 10px;
+
+}
+canvas {
+    /* margin-left: 20px; */
+}
