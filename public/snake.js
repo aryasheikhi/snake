@@ -1,6 +1,7 @@
 /**
  * Hello there! 
  * This is Arya. I hope you like my work :D
+ * please checkout my other stuff on my github به نشانی https://github.com/AryaSheikhi
  */
 
 const interval = 250;
