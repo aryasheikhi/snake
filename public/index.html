@@ -9,14 +9,21 @@
 </head>
 <body>
     <div id="main">
-        <span>snake</span>
-        <div id="container">
-            <canvas id="gameCanvas"></canvas>
-            <div id="appleContainer">
-                <img id="apple" src="/apple.png" alt="apple">
-            </div>
+        <div id="logo">
+            <span>sssnake 🐍</span>
         </div>
-        <button id="controller" onclick="controller()" type="button">Start</button>
+        <div id="container">
+			<div id="canvasWrapper">
+				<canvas id="gameCanvas"></canvas>
+                <div id="apple"></div>
+			</div>
+        </div>
+        <div id="hint">
+            <span id="hintSpan"></span>
+        </div>
+        <div id="controllerWrapper">
+            <button id="controller" onclick="controller()" type="button">start</button>
+        </div>
     </div>
     <script src="/snake.js"></script>
 </body>
