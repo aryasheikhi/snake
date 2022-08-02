@@ -23,8 +23,10 @@ canvas.height = height;
 canvas.width = width;
 
 const ctx = canvas.getContext('2d');
-ctx.fillStyle = 'red';
+ctx.fillStyle = '#063300';
 ctx.imageSmoothingEnabled = false;
+ctx.fillRect(0, 0, width, height);
+ctx.fillStyle = 'red';
 
 let snake = [[20, 20], [40, 20], [60, 20]];
 
@@ -104,7 +106,10 @@ const draw = () => {
         ctx.fillRect(block[0], block[1], scale, scale)
         if (index === snake.length - 1) drawEyes(block[0], block[1]);
     });
-	ctx.clearRect(snake[0][0], snake[0][1], scale, scale);
+	// ctx.clearRect(snake[0][0], snake[0][1], scale, scale);
+    ctx.fillStyle = '#063300';
+	ctx.fillRect(snake[0][0], snake[0][1], scale, scale);
+    ctx.fillStyle = 'red';
 };
 
 const gameLoop = () => {
