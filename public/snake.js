@@ -128,7 +128,6 @@ const gameLoop = () => {
     selfCollision = checkSelfCollision(nextHead);
     wallCollision = checkWallCollision(nextHead);
     if (selfCollision || wallCollision) return stop();
-    
     snake.push(nextHead);
     return draw();
 };
@@ -163,21 +162,17 @@ const setDirection = dir => {
     dirName = dir;
     switch (dir) {
         case 'left':
-            if (direction[0] === scale && direction[1] === 0) break;
-            direction = [-scale, 0];
-            break;
+            if (direction[0] === scale && direction[1] === 0)  break;
+            direction = [-scale, 0]; break;
         case 'up':
-            if (direction[0] === 0 && direction[1] === scale) break;
-            direction = [0, -scale];
-            break;
+            if (direction[0] === 0 && direction[1] === scale)  break;
+            direction = [0, -scale]; break;
         case 'right':
             if (direction[0] === -scale && direction[1] === 0) break;
-            direction = [scale, 0];
-            break;
+            direction = [scale, 0];  break;
         case 'bottom':
             if (direction[0] === 0 && direction[1] === -scale) break;
-            direction = [0, scale];
-            break;
+            direction = [0, scale];  break;
     }
 };
 
