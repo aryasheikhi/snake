@@ -1,23 +1,18 @@
 * {
-	box-sizing: border -box;
+	box-sizing: content-box;
 }
 
 body {
-    height: 100%;
 	margin: 0;
     font-family: monospace;
     background-color: rgb(157, 255, 0);
-    touch-action: none;
 }
 
 #main {
-	width: 100%;
 	display: flex;
 	flex-direction: column;
     align-items: center;
-}
-#main > div {
-    width: 500px;
+    justify-content: center;
 }
 
 #logo {
@@ -32,7 +27,6 @@ body {
 }
 
 #container {
-	width: 500px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -41,10 +35,11 @@ body {
 
 #canvasWrapper {
 	position: relative;
-    border: 1em solid brown;
+    border: 15px solid brown;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #063300;
 }
 
 #apple {
@@ -58,37 +53,69 @@ body {
 	background-repeat: no-repeat;
 }
 
+.drawer {
+    position: absolute;
+    color: white;
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.drawer-header {
+    border-bottom: 1px solid white;
+    text-align: center;
+    height: 1.5em;
+}
+
+.drawer-list {
+    /* max-height: 176px; */
+    margin: 0;
+}
+
+.display-none {
+    display: none;
+}
+
+#mode {
+    
+}
+
+#points {}
+
 #hint {
-    margin-top: 2em;
+    margin-top: 1.5em;
     display: flex;
     justify-content: center;
     align-items: center;
     color: rgb(6, 51, 0);
     font-weight: bold;
-    flex: 1;
-}
-#hint > span {
+    touch-action: none;
     width: 300px;
-    text-align: center;
+    height: 2em;
+    border: 15px solid rgb(132, 214, 0);
     background-color: rgb(132, 214, 0);
-    padding: 1em;
+    text-align: center;
 }
 
 #controllerWrapper {
-    margin-top: 2em;
+    margin-top: 1.5em;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+    width: 330px;
 }
 
-#controller {
-    border: .35em solid black;
+.controller {
+    border: 5px solid #063300;
     background-color: inherit;
-    color: white;
-    text-shadow: 1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
+    color: #063300;
+    text-align: center;
     font-family: monospace;
-    height: 2em;
-    font-size: 16px;
+    height: 20px;
+    width: 45px;
+    font-size: 12px;
     cursor: pointer;
     font-weight: bolder;
 }

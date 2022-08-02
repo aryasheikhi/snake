@@ -10,7 +10,14 @@ let intervalID = 0;
 let gameStatus = false;
 const controlButton = document.getElementById('controller');
 
-const gamePoints = [];
+// const gamePoints = [10000, 444, 2342134, 20, 13245, 23, 683, 587686, 4, 23, 3425];
+
+let snakePoints = JSON.parse(localStorage.getItem('snakePoints'));
+if (!snakePoints) {
+    localStorage.setItem('snakePoints', '[]');
+    snakePoints = [];
+}
+
 let wallCollision = false;
 let selfCollision = false;
 
@@ -106,7 +113,6 @@ const draw = () => {
         ctx.fillRect(block[0], block[1], scale, scale)
         if (index === snake.length - 1) drawEyes(block[0], block[1]);
     });
-	// ctx.clearRect(snake[0][0], snake[0][1], scale, scale);
     ctx.fillStyle = '#063300';
 	ctx.fillRect(snake[0][0], snake[0][1], scale, scale);
     ctx.fillStyle = 'red';
@@ -128,21 +134,15 @@ const gameLoop = () => {
     selfCollision = checkSelfCollision(nextHead);
     wallCollision = checkWallCollision(nextHead);
     if (selfCollision || wallCollision) return stop();
+
     snake.push(nextHead);
     return draw();
 };
 
-const reset = () => {
-    snake = [[20, 20], [40, 20], [60, 20]];
-    appleCoords = genApple();
-    apple.style.left = appleCoords[0] + 'px';
-    apple.style.top = appleCoords[1] + 'px';
-    direction = [scale, 0];
-    ctx.clearRect(0, 0, width, height);
-};
-
 const start = () => {
-    if (wallCollision || selfCollision) reset();
+    if (selfCollision || wallCollision) reset();
+    snakePoints = JSON.parse(localStorage.getItem('snakePoints'));
+    localStorage.setItem('snakePoints', JSON.stringify([...snakePoints, snake.length]));
     gameStatus = true;
     controlButton.blur();
     controlButton.innerHTML = 'stop';
@@ -156,7 +156,35 @@ const stop = () => {
     clearInterval(intervalID);
 };
 
-const controller = () => gameStatus ? stop() : start();
+const reset = () => {
+    snake = [[20, 20], [40, 20], [60, 20]];
+    appleCoords = genApple();
+    apple.style.left = appleCoords[0] + 'px';
+    apple.style.top = appleCoords[1] + 'px';
+    direction = [scale, 0];
+    ctx.clearRect(0, 0, width, height);
+};
+
+const controller = () => {
+    return gameStatus ? stop() : start()
+};
+
+const modeController = e => {
+    const modeMenu = document.getElementById('modeMenu');
+};
+
+const pointsController = e => {
+    const pointsMenu = document.getElementById('pointsMenu');
+    pointsMenu.classList.toggle('display-none');
+    const pointsList = document.getElementById('pointsList');
+    pointsList.innerHTML = '';
+    const sorted = snakePoints.sort((a, b) => a < b ? 1 : a > b ? -1 : 0).filter((point, index, array) => !index || point !== array[index - 1]);
+    sorted.slice(0, 10).forEach(point => {
+        const li = document.createElement('li');
+        li.innerHTML = point;
+        pointsList.appendChild(li);
+    });
+};
 
 const setDirection = dir => {
     dirName = dir;
@@ -214,9 +242,9 @@ const touchEnds = e => {
 };
 
 const isTouch = () => {
-    const hintSpan = document.getElementById('hintSpan');
+    const hint = document.getElementById('hint');
     const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-    hintSpan.innerHTML = isTouch ? 'swipe to control movement' : 'use arrow keys for movement';
+    hint.innerHTML = isTouch ? 'swipe to control movement' : 'use arrow keys for movement';
 };
 
 document.addEventListener('DOMContentLoaded', isTouch);
