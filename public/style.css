@@ -78,12 +78,6 @@ body {
     display: none;
 }
 
-#mode {
-    
-}
-
-#points {}
-
 #hint {
     margin-top: 1.5em;
     display: flex;
