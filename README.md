@@ -3,5 +3,5 @@ This is a snake-inspired game made with HTML, CSS and JavaScript.
 I have also made a small server application for it using Express.js  
   
 # How to run
-Run `npm install` in main directory. Then run `npm start`.
+Run `npm install` in the main directory. Then run `npm start`.  
 Have fun! :D  
