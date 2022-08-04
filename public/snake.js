@@ -55,24 +55,9 @@ apple.style.left = appleCoords[0] + 'px';
 apple.style.top = appleCoords[1] + 'px';
 
 const checkForApple = nextHead => {
-	let eatenX = false;
-	let eatenY = false;
-
-    if (direction[0] === scale) {
-        eatenX = appleCoords[0] === nextHead[0] + scale;
-        eatenY = appleCoords[1] === nextHead[1];
-    } else if (direction[0] === -scale) {
-        eatenX = appleCoords[0] === nextHead[0] - scale;
-        eatenY = appleCoords[1] === nextHead[1];
-    } else if (direction[0] === 0) {
-        if (direction[1] === scale) {
-            eatenX = appleCoords[0] === nextHead[0];
-            eatenY = appleCoords[1] === nextHead[1] + scale;
-        } else {
-            eatenX = appleCoords[0] === nextHead[0];
-            eatenY = appleCoords[1] === nextHead[1] - scale;
-        }
-    }
+    let eatenX = appleCoords[0] === nextHead[0];
+    let eatenY = appleCoords[1] === nextHead[1];
+    
     return eatenX && eatenY ? true : false;
 };
 
