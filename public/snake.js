@@ -111,13 +111,6 @@ const gameLoop = () => {
 		snake[snake.length - 1][1] + direction[1],
 	];
     
-    appleEaten = checkForApple(nextHead);
-    if (appleEaten) {
-        appleCoords = genApple();
-		apple.style.left = appleCoords[0] + 'px';
-		apple.style.top = appleCoords[1] + 'px';
-    } else snake = snake.slice(1);
-    
     selfCollision = checkSelfCollision(nextHead);
     wallCollision = checkWallCollision(nextHead);
     if (goThrough && wallCollision)
@@ -129,6 +122,13 @@ const gameLoop = () => {
         }
 
     if (!goThrough && (selfCollision || wallCollision)) return stop();
+
+    appleEaten = checkForApple(nextHead);
+    if (appleEaten) {
+        appleCoords = genApple();
+		apple.style.left = appleCoords[0] + 'px';
+		apple.style.top = appleCoords[1] + 'px';
+    } else snake = snake.slice(1);
 
     snake.push(nextHead);
     return draw();
