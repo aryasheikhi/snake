@@ -67,11 +67,18 @@ body {
     border-bottom: 1px solid white;
     text-align: center;
     height: 1.5em;
+    font-weight: bolder;
 }
 
 .drawer-list {
-    /* max-height: 176px; */
     margin: 0;
+}
+
+.mode-list-item {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    margin: 5px auto;
 }
 
 .display-none {

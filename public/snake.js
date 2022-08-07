@@ -4,8 +4,9 @@
  * please checkout my other stuff on my github به نشانی https://github.com/AryaSheikhi
  */
 
-const interval = 250;
+const interval = 150;
 let intervalID = 0;
+let goThrough = true;
 
 let gameStatus = false;
 const controlButton = document.getElementById('controller');
@@ -61,12 +62,13 @@ const checkForApple = nextHead => {
     return eatenX && eatenY ? true : false;
 };
 
-const checkWallCollision = newSnakeHead => (
-    newSnakeHead[0] >= width ||
-    newSnakeHead[1] >= height ||
-    newSnakeHead[0] <= 0 - scale ||
-    newSnakeHead[1] <= 0 - scale
-);
+let hitPlace = '';
+const checkWallCollision = newSnakeHead => {
+    if (newSnakeHead[0] >= width)          { hitPlace =  'right'; return true; }
+    else if (newSnakeHead[1] >= height)    { hitPlace = 'bottom'; return true; }
+    else if (newSnakeHead[0] <= 0 - scale) { hitPlace =   'left'; return true; }
+    else if (newSnakeHead[1] <= 0 - scale) { hitPlace =    'top'; return true; }
+};
 
 const checkSelfCollision = nextHead => !!snake.find(currentHead => (currentHead[0] === nextHead[0]) && (currentHead[1] === nextHead[1]));
 
@@ -118,7 +120,15 @@ const gameLoop = () => {
     
     selfCollision = checkSelfCollision(nextHead);
     wallCollision = checkWallCollision(nextHead);
-    if (selfCollision || wallCollision) return stop();
+    if (goThrough && wallCollision)
+        switch (hitPlace) {
+            case 'left':    nextHead[0] += width;  break;
+            case 'top':     nextHead[1] += height; break;
+            case 'right':   nextHead[0] -= width;  break;
+            case 'bottom':  nextHead[1] -= height; break;
+        }
+
+    if (!goThrough && (selfCollision || wallCollision)) return stop();
 
     snake.push(nextHead);
     return draw();
@@ -151,14 +161,27 @@ const reset = () => {
 };
 
 const controller = () => {
-    return gameStatus ? stop() : start()
+    Array.from(document.getElementsByClassName('drawer')).forEach(drawer => drawer.classList.add('display-none'));
+    return gameStatus ? stop() : start();
 };
 
 const modeController = e => {
+    e.target.blur();
     const modeMenu = document.getElementById('modeMenu');
+    modeMenu.classList.toggle('display-none');
+};
+
+const changeGameMode = e => {
+    console.log(e.target.value)
+    if (e.target.value === 'on') {
+        goThrough = true;
+    } else {
+        goThrough = false;
+    }
 };
 
 const pointsController = e => {
+    e.target.blur();
     const pointsMenu = document.getElementById('pointsMenu');
     pointsMenu.classList.toggle('display-none');
     const pointsList = document.getElementById('pointsList');

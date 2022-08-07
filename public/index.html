@@ -17,8 +17,17 @@
 					<canvas id="gameCanvas"></canvas>
 					<div id="apple"></div>
                     <div id="modeMenu" class="drawer display-none">
-                        <div class="drawer-header"></div>
-                        <div class="drawer-list"></div>
+                        <div class="drawer-header">go through</div>
+                        <div class="drawer-list mode-list">
+							<div class="mode-list-item">
+								<label for="surpassRadio">on</label>
+								<input id="surpassRadio" type="radio" name="mode" value="on" onclick="changeGameMode(event)" checked />
+							</div>
+							<div class="mode-list-item">
+								<label for="hitRadio">off</label>
+								<input id="hitRadio" type="radio" name="mode" value="off" onclick="changeGameMode(event)" />
+							</div>
+						</div>
                     </div>
                     <div id="pointsMenu" class="drawer display-none">
                         <div class="drawer-header">points</div>
