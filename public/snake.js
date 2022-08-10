@@ -114,6 +114,7 @@ const gameLoop = () => {
     selfCollision = checkSelfCollision(nextHead);
     wallCollision = checkWallCollision(nextHead);
     if (selfCollision) return stop();
+    if (!goThrough && (selfCollision || wallCollision)) return stop();
     if (goThrough && wallCollision) {
         switch (hitPlace) {
             case 'left':    nextHead[0] += width;  break;
@@ -122,7 +123,6 @@ const gameLoop = () => {
             case 'bottom':  nextHead[1] -= height; break;
         }
     }
-    if (!goThrough && (selfCollision || wallCollision)) return stop();
 
     appleEaten = checkForApple(nextHead);
     if (appleEaten) {
