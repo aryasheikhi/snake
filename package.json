@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@types/node": "^18.11.3",
     "express": "^4.18.1"
   },
   "scripts": {
@@ -9,8 +10,7 @@
   "name": "snake",
   "version": "1.0.0",
   "main": "app.js",
-  "devDependencies": {},
-  "author": "",
+  "author": "Arya Sheikhi @aryasheikhi",
   "license": "ISC",
   "description": ""
 }
